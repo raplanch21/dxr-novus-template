@@ -25,11 +25,16 @@ Use shared shadcn primitives for controls, forms, overlays, navigation,
 feedback, and basic surfaces. Develop reusable dashboard and visualization
 patterns in Storybook.
 
+`npm run audit:stories` reports Storybook coverage for existing UI and
+dashboard-reference components. The audit is intentionally nonblocking while
+coverage is backfilled, and it also runs in `test:ci`.
+
 ## Commands
 
 ```bash
 npm run lint
 npm test
+npm run audit:stories
 npm run storybook
 npm run build-storybook
 npm run build

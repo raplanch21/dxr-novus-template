@@ -11,7 +11,8 @@
     "test:unit": "vitest run --project unit",
     "pretest:storybook": "playwright install chromium",
     "test:storybook": "vitest run --project storybook",
-    "test:ci": "npm run test:node && npm run test:unit && npm run test:storybook",
+    "audit:stories": "node scripts/audit-component-stories.mjs",
+    "test:ci": "npm run audit:stories && npm run test:node && npm run test:unit && npm run test:storybook",
     "test": "npm run test:node && npm run test:unit",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"

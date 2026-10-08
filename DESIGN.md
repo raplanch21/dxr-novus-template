@@ -216,6 +216,24 @@ Interactive controls must always use Lucide icons when an icon is needed (button
 
 Every clickable element must communicate interactivity with pointer cursor behavior (`cursor: pointer` / `cursor-pointer`) in addition to its visual styling.
 
+### Component and visualization enforcement
+
+- Product UI must compose the configured primitives in `src/components/ui`.
+  Review the existing library before creating local control, form, navigation,
+  overlay, feedback, or surface markup.
+- Dashboard and visualization UI must reuse patterns from
+  `src/components/dashboard-reference`. Review the matching Storybook stories
+  before selecting or creating a pattern.
+- New reusable components must include a focused test and a Storybook story.
+- Categorical chart marks must use `var(--chart-1)` through
+  `var(--chart-9)`. Assign colors in sequence and keep each series stable
+  within a visualization.
+- Never hardcode categorical series colors. Hardcoded neutral colors are
+  allowed only for non-series structure such as axes, grids, inactive marks,
+  and white mark outlines.
+- Project routes must not import `recharts` directly. Chart implementation
+  belongs in `src/components/ui` or `src/components/dashboard-reference`.
+
 Dashboard metric cards are for top-level health orientation, not deep investigation. Each card should contain a compact sentence-case metric label, one dominant value, an optional trend delta, one explanatory sentence, and timeframe metadata. If users need more than one sentence to understand a metric, move that context to the section analysis area below.
 
 Section headers (number + title) anchor narrative progression. Use them when introducing a new diagnostic dimension such as coverage, page activity, or funnel readiness. The left number is an orientation cue, not a progress bar; never encode success/failure in that number styling.
