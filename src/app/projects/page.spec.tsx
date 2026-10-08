@@ -6,17 +6,16 @@ import ProjectsPage from "./page";
 afterEach(cleanup);
 
 describe("ProjectsPage", () => {
-  it("shows the empty Projects state", () => {
+  it("shows the project page header and subheader", () => {
     render(<ProjectsPage />);
 
     expect(
-      screen.getByRole("heading", { level: 1, name: "Projects" }),
+      screen.getByRole("heading", { level: 1, name: "Your first project" }),
     ).toBeInTheDocument();
     expect(
-      screen.getByRole("heading", { name: "No projects yet" }),
-    ).toBeInTheDocument();
-    expect(
-      screen.getByText(/isolated route under src\/app\/projects/i),
+      screen.getByText(
+        "Build and explore your Novus prototype in this workspace.",
+      ),
     ).toBeInTheDocument();
   });
 });

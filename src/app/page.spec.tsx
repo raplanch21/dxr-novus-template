@@ -6,18 +6,21 @@ import Home from "./page";
 afterEach(cleanup);
 
 describe("Home", () => {
-  it("introduces the template and links to the projects area", () => {
+  it("labels the project directory", () => {
     render(<Home />);
 
     expect(
       screen.getByRole("heading", {
         level: 1,
-        name: "Build a Novus prototype",
+        name: "Project directory",
       }),
     ).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: "View projects" })).toHaveAttribute(
-      "href",
-      "/projects",
-    );
+    expect(
+      screen.getByRole("link", { name: /Your first project/ }),
+    ).toHaveAttribute("href", "/projects");
+    expect(
+      screen.getByRole("heading", { level: 2, name: "Project resources" }),
+    ).toBeInTheDocument();
+    expect(screen.queryByRole("alert")).not.toBeInTheDocument();
   });
 });

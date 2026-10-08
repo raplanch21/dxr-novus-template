@@ -17,7 +17,7 @@ afterEach(() => {
 });
 
 describe("AppShell", () => {
-  it("renders neutral navigation and a Projects breadcrumb", () => {
+  it("renders the reference navigation and project breadcrumb", () => {
     render(
       <AppShell>
         <div>Project content</div>
@@ -28,17 +28,26 @@ describe("AppShell", () => {
       "href",
       "/",
     );
-    expect(screen.getByRole("link", { name: "Projects" })).toHaveAttribute(
+    expect(screen.getByRole("link", { name: "Overview" })).toHaveAttribute(
       "href",
       "/projects",
     );
-    expect(screen.getByRole("link", { name: "Projects" })).toHaveAttribute(
+    expect(screen.getByRole("link", { name: "Overview" })).toHaveAttribute(
       "aria-current",
       "page",
     );
+    expect(screen.getByText("Launch")).toBeInTheDocument();
+    expect(screen.getByText("Cortex")).toBeInTheDocument();
+    expect(screen.queryByText("Goals")).not.toBeInTheDocument();
+    expect(screen.queryByText("Launches")).not.toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Ask Novus" })).toBeInTheDocument();
 
     const breadcrumb = screen.getByRole("navigation", { name: "Breadcrumb" });
-    expect(within(breadcrumb).getByText("Projects")).toHaveAttribute(
+    expect(within(breadcrumb).getByRole("link", { name: "Directory" })).toHaveAttribute(
+      "href",
+      "/",
+    );
+    expect(within(breadcrumb).getByText("Your first project")).toHaveAttribute(
       "aria-current",
       "page",
     );
